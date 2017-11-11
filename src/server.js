@@ -1,5 +1,6 @@
 // src/server.js
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const express = require('express');
 const config = require('./config');
