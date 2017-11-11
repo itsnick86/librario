@@ -1,5 +1,6 @@
 // src/routes/index.js
 const router = require('express').Router();
+const mongoose = require('mongoose');
 
 const FILES = [
   {id: 'a', title: 'cutecat1.jpg', description: 'A cute cat'},
@@ -14,7 +15,14 @@ router.use('/doc', function(req, res, next) {
 
 // List handler
 router.get('/file', function(req, res, next) {
-  res.json(FILES);
+  mongoose.model('File').find({}, function(err, files) {
+    if (err) {
+      console.log(err);
+      return res.status(500).json(err);
+    }
+  
+    res.json(files);
+  });
 });
 
 // Create handler
