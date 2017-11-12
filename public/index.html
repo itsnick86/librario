@@ -10,32 +10,32 @@
     <div class="container">
       <h1>Librario</h1>
       <div id="list-container"></div>
-      <button id="add-file-button" class="btn btn-primary" onclick="toggleAddFileForm()">Add File</button>
+      <button id="add-book-button" class="btn btn-primary" onclick="toggleAddBookForm()">Add Book</button>
       <div id="form-container" class="panel hidden">
-        <form id="add-file-form">
-          <input type="hidden" id="file-id" value="" />
+        <form id="add-book-form">
+          <input type="hidden" id="book-id" value="" />
           <div class="form-group">
-            <label for="file-title">Title</label>
-            <input type="text" class="form-control" id="file-title" placeholder="Title">
+            <label for="book-title">Title</label>
+            <input type="text" class="form-control" id="book-title" placeholder="Title">
           </div>
           <div class="form-group">
-            <label for="file-description">Description</label>
-            <input type="text" class="form-control" id="file-description" placeholder="Description">
+            <label for="book-author">Author</label>
+            <input type="text" class="form-control" id="book-author" placeholder="Author">
           </div>
-          <button type="button" onclick="submitFileForm()" class="btn btn-success">Submit</button>
-          <button type="button" onclick="cancelFileForm()" class="btn btn-link">cancel</button>
+          <button type="button" onclick="submitBookForm()" class="btn btn-success">Submit</button>
+          <button type="button" onclick="cancelBookForm()" class="btn btn-link">cancel</button>
         </form>
       </div>
     </div>
 
     <script id="list-template" type="text/x-handlebars-template">
       <ul class="list-group">
-        {{#each files}}
+        {{#each books}}
         <li class="list-group-item">
-          <strong>{{title}}</strong> - {{description}}
+          <strong>{{title}}</strong> - {{author}}
           <span class="pull-right">
-            <button type="button" class="btn btn-xs btn-default" onclick="editFileClick('{{_id}}')">Edit</button>
-            <button type="button" class="btn btn-xs btn-danger" onclick="deleteFileClick('{{_id}}')">Del</button>
+            <button type="button" class="btn btn-xs btn-default" onclick="editBookClick('{{_id}}')">Edit</button>
+            <button type="button" class="btn btn-xs btn-danger" onclick="deleteBookClick('{{_id}}')">Del</button>
           </span>
         </li>
         {{/each}}
@@ -55,7 +55,7 @@
     
         $('body h1').first().after(greetingRendered);
 
-        refreshFileList();
+        refreshBookList();
       });
     </script>
 

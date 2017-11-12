@@ -1,27 +1,27 @@
-// Function to get the file list
-function getFiles() {
-  return $.ajax('/api/file')
+// Function to get the book list
+function getBooks() {
+  return $.ajax('/api/book')
     .then(res => {
-      console.log("Results from getFiles()", res);
+      console.log("Results from getBooks()", res);
       return res;
     })
     .fail(err => {
-      console.log("Error in getFiles()", err);
+      console.log("Error in getBooks()", err);
       throw err;
     });
 }
 
-// Function to refresh the file list
-function refreshFileList() {
+// Function to refresh the book list
+function refreshBookList() {
   const template = $('#list-template').html();
   const compiledTemplate = Handlebars.compile(template);
 
-  getFiles()
-    .then(files => {
+  getBooks()
+    .then(books => {
 
-      window.fileList = files;
+      window.bookList = books;
 
-      const data = {files: files};
+      const data = {books: books};
       const html = compiledTemplate(data);
       $('#list-container').html(html);
     })
@@ -29,80 +29,80 @@ function refreshFileList() {
 
 
 // Function to toggle the form
-function toggleAddFileForm() {
+function toggleAddBookForm() {
   console.log("Baby steps...");
   setFormData({});
-  toggleAddFileFormVisibility();
+  toggleAddBookFormVisibility();
 }
 
 
-function toggleAddFileFormVisibility() {
+function toggleAddBookFormVisibility() {
   $('#form-container').toggleClass('hidden');
 }
 
 
-function submitFileForm() {
+function submitBookForm() {
   console.log("You clicked 'submit'. Congratulations.");
 
-  const fileData = {
-    title: $('#file-title').val(),
-    description: $('#file-description').val(),
-    _id: $('#file-id').val(),
+  const bookData = {
+    title: $('#book-title').val(),
+    author: $('#book-author').val(),
+    _id: $('#book-id').val(),
   };
 
   let method, url;
-  if (fileData._id) {
+  if (bookData._id) {
     method = 'PUT';
-    url = '/api/file/' + fileData._id;
+    url = '/api/book/' + bookData._id;
   } else {
     method = 'POST';
-    url = '/api/file';
+    url = '/api/book';
   }
 
   $.ajax({
     type: method,
     url: url,
-    data: JSON.stringify(fileData),
+    data: JSON.stringify(bookData),
     dataType: 'json',
     contentType : 'application/json',
   })
     .done(function(response) {
       console.log("We have posted the data");
-      refreshFileList();
-      toggleAddFileForm();
+      refreshBookList();
+      toggleAddBookForm();
     })
     .fail(function(error) {
       console.log("Failures at posting, we are", error);
     })
 
-  console.log("Your file data", fileData);
+  console.log("Your book data", bookData);
 }
 
-function cancelFileForm() {
-  toggleAddFileFormVisibility();
+function cancelBookForm() {
+  toggleAddBookFormVisibility();
 }
 
 // Edits the form
-function editFileClick(id) {
-  const file = window.fileList.find(file => file._id === id);
-  if (file) {
-    setFormData(file);
-    toggleAddFileFormVisibility();
+function editBookClick(id) {
+  const book = window.bookList.find(book => book._id === id);
+  if (book) {
+    setFormData(book);
+    toggleAddBookFormVisibility();
   }
 }
 
 
-function deleteFileClick(id) {
+function deleteBookClick(id) {
   if (confirm("Are you sure?")) {
     $.ajax({
       type: 'DELETE',
-      url: '/api/file/' + id,
+      url: '/api/book/' + id,
       dataType: 'json',
       contentType : 'application/json',
     })
       .done(function(response) {
-        console.log("File", id, "is DOOMED!!!!!!");
-        refreshFileList();
+        console.log("Book", id, "is DOOMED!!!!!!");
+        refreshBookList();
       })
       .fail(function(error) {
         console.log("I'm not dead yet!", error);
@@ -114,13 +114,13 @@ function deleteFileClick(id) {
 function setFormData(data) {
   data = data || {};
 
-  const file = {
+  const book = {
     title: data.title || '',
-    description: data.description || '',
+    author: data.author || '',
     _id: data._id || '',
   };
 
-  $('#file-title').val(file.title);
-  $('#file-description').val(file.description);
-  $('#file-id').val(file._id);
+  $('#book-title').val(book.title);
+  $('#book-author').val(book.author);
+  $('#book-id').val(book._id);
 }

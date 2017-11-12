@@ -2,27 +2,27 @@
 const mongoose = require('mongoose');
 
 // Schema for the DB
-const FileSchema = new mongoose.Schema({
+const BookSchema = new mongoose.Schema({
   title: String,
-  description: String,
+  author: String,
   created_at: { type: Date, default: Date.now },
   deleted: {type: Boolean, default: false}
 });
 
 // Turns the Schema into a Model and Exports it
-const File = mongoose.model('File', FileSchema);
-module.exports = File;
+const Book = mongoose.model('Book', BookSchema);
+module.exports = Book;
 
 // Adding seed data
-File.count({}, function(err, count) {
+Book.count({}, function(err, count) {
   if (err) {
     throw err;
   }
 
   if (count > 0) return ;
   
-  const files = require('./file.seed.json');
-  File.create(files, function(err, newFiles) {
+  const books = require('./book.seed.json');
+  Book.create(books, function(err, newBooks) {
     if (err) {
       throw err;
     }

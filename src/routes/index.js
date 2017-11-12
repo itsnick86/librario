@@ -2,11 +2,11 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 
-const FILES = [
-  {id: 'a', title: 'cutecat1.jpg', description: 'A cute cat'},
-  {id: 'b', title: 'uglycat1.jpg', description: 'Just kidding, all cats are cute'},
-  {id: 'c', title: 'total_recall_poster.jpg', description: 'Quaid, start the reactor...'},
-  {id: 'd', title: 'louisville_coffee.txt', description: 'Coffee shop ratings'},
+const BOOKS = [
+  {id: 'a', title: 'cutecat1.jpg', author: 'A cute cat'},
+  {id: 'b', title: 'uglycat1.jpg', author: 'Just kidding, all cats are cute'},
+  {id: 'c', title: 'total_recall_poster.jpg', author: 'Quaid, start the reactor...'},
+  {id: 'd', title: 'louisville_coffee.txt', author: 'Coffee shop ratings'},
 ];
 
 router.use('/doc', function(req, res, next) {
@@ -14,97 +14,97 @@ router.use('/doc', function(req, res, next) {
 });
 
 // List handler
-router.get('/file', function(req, res, next) {
-  mongoose.model('File').find({deleted: {$ne: true}}, function(err, files) {
+router.get('/book', function(req, res, next) {
+  mongoose.model('Book').find({deleted: {$ne: true}}, function(err, books) {
     if (err) {
       console.error(err);
       return res.status(500).json(err);
     }
 
-    res.json(files);
+    res.json(books);
   });
 });
 
 // Create handler
-router.post('/file', function(req, res, next) {
-  const File = mongoose.model('File');
-  const fileData = {
+router.post('/book', function(req, res, next) {
+  const Book = mongoose.model('Book');
+  const bookData = {
     title: req.body.title,
-    description: req.body.description,
+    author: req.body.author,
   };
 
-  File.create(fileData, function(err, newFile) {
+  Book.create(bookData, function(err, newBook) {
     if (err) {
       console.error(err);
       return res.status(500).json(err);
     }
 
-    res.json(newFile);
+    res.json(newBook);
   });
 });
 
 // Update handler
-router.put('/file/:fileId', function(req, res, next) {
-  const File = mongoose.model('File');
-  const fileId = req.params.fileId;
+router.put('/book/:bookId', function(req, res, next) {
+  const Book = mongoose.model('Book');
+  const bookId = req.params.bookId;
   
-  File.findById(fileId, function(err, file) {
+  Book.findById(bookId, function(err, book) {
     if (err) {
       console.error(err);
       return res.status(500).json(err);
     }
-    if (!file) {
-      return res.status(404).json({message: "File not found"});
+    if (!book) {
+      return res.status(404).json({message: "Book not found"});
     }
   
-    file.title = req.body.title;
-    file.description = req.body.description;
+    book.title = req.body.title;
+    book.author = req.body.author;
   
-    file.save(function(err, savedFile) {
+    book.save(function(err, savedBook) {
       if (err) {
         console.error(err);
         return res.status(500).json(err);
       }
-      res.json(savedFile);
+      res.json(savedBook);
     })
   
   })
   });
 
 // Delete handler
-router.delete('/file/:fileId', function(req, res, next) {
-  const File = mongoose.model('File');
-  const fileId = req.params.fileId;
+router.delete('/book/:bookId', function(req, res, next) {
+  const Book = mongoose.model('Book');
+  const bookId = req.params.bookId;
 
-  File.findById(fileId, function(err, file) {
+  Book.findById(bookId, function(err, book) {
     if (err) {
       console.error(err);
       return res.status(500).json(err);
     }
-    if (!file) {
-      return res.status(404).json({message: "File not found"});
+    if (!book) {
+      return res.status(404).json({message: "Book not found"});
     }
 
-    file.deleted = true;
+    book.deleted = true;
 
-    file.save(function(err, doomedFile) {
-      res.json(doomedFile);
+    book.save(function(err, doomedBook) {
+      res.json(doomedBook);
     })
 
   })
 });
 
 // Read handler
-router.get('/file/:fileId', function(req, res, next) {
-  const {fileId} = req.params;
-  // same as 'const fileId = req.params.fileId'
+router.get('/book/:bookId', function(req, res, next) {
+  const {bookId} = req.params;
+  // same as 'const bookId = req.params.bookId'
 
-  const file = FILES.find(entry => entry.id === fileId);
-  if (!file) {
-    return res.status(404).end(`Could not find file '${fileId}'`);
+  const book = BOOKS.find(entry => entry.id === bookId);
+  if (!book) {
+    return res.status(404).end(`Could not find book '${bookId}'`);
   }
 
-  res.json(file);
+  res.json(book);
 });
 
 module.exports = router;
