@@ -6,6 +6,7 @@ const FileSchema = new mongoose.Schema({
   title: String,
   description: String,
   created_at: { type: Date, default: Date.now },
+  deleted: {type: Boolean, default: false}
 });
 
 // Turns the Schema into a Model and Exports it
