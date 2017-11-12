@@ -24,25 +24,48 @@
             <input type="text" class="form-control" id="book-author" placeholder="Author">
           </div>
           <button type="button" onclick="submitBookForm()" class="btn btn-success">Submit</button>
-          <button type="button" onclick="cancelBookForm()" class="btn btn-link">cancel</button>
+          <button type="button" onclick="cancelBookForm()" class="btn btn-warning">Cancel</button>
         </form>
         <!-- End of Form -->
       </div>
     </div>
 
     
-    <script id="list-template" type="text/x-handlebars-template">
+    <!-- <script id="list-template" type="text/x-handlebars-template">
       <ul class="list-group">
         {{#each books}}
         <li class="list-group-item">
           <strong>{{title}}</strong> - {{author}}
           <span class="pull-right">
-            <button type="button" class="btn btn-xs btn-default" onclick="editBookClick('{{_id}}')">Edit</button>
-            <button type="button" class="btn btn-xs btn-danger" onclick="deleteBookClick('{{_id}}')">Del</button>
+            <button type="button" class="btn btn-xs btn-info" onclick="editBookClick('{{_id}}')">Edit</button>
+            <button type="button" class="btn btn-xs btn-danger" onclick="deleteBookClick('{{_id}}')">Remove</button>
           </span>
         </li>
         {{/each}}
       </ul>
+    </script> -->
+
+    <script id="list-template" type="text/x-handlebars-template">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each books}}
+            <tr>
+              <td>{{title}}</td>
+              <td>{{author}}</td>
+              <td>
+                <button type="button" class="btn btn-xs btn-info" onclick="editBookClick('{{_id}}')">Edit</button>
+                <button type="button" class="btn btn-xs btn-danger" onclick="deleteBookClick('{{_id}}')">Remove</button>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
