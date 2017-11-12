@@ -11,6 +11,7 @@
       <h1>Librario</h1>
       <div id="list-container"></div>
       <button id="add-book-button" class="btn btn-primary" onclick="toggleAddBookForm()">Add Book</button>
+      <!-- Beginning of Form -->
       <div id="form-container" class="panel hidden">
         <form id="add-book-form">
           <input type="hidden" id="book-id" value="" />
@@ -25,9 +26,11 @@
           <button type="button" onclick="submitBookForm()" class="btn btn-success">Submit</button>
           <button type="button" onclick="cancelBookForm()" class="btn btn-link">cancel</button>
         </form>
+        <!-- End of Form -->
       </div>
     </div>
 
+    
     <script id="list-template" type="text/x-handlebars-template">
       <ul class="list-group">
         {{#each books}}
