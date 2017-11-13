@@ -1,0 +1,13 @@
+.main-header {
+  padding-top: 250px;
+  height: 850px;
+  background: url('../img/library.jpg') no-repeat center;
+  background-size: cover;
+
+}
+
+.title {
+  text-align: center;
+  color: white;
+  font-size: 5em;
+}

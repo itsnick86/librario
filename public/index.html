@@ -4,11 +4,16 @@
     <meta charset="utf-8">
     <title>Librario</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
   </head>
   
   <body>
+    <header id="top" class="main-header">
+      <h1 class="title">Welcome to Librario</h1>
+    </header>
+
     <div class="container">
-      <h1>Librario</h1>
+      <h1>Your Books</h1>
       <div id="list-container"></div>
       <button id="add-book-button" class="btn btn-primary" onclick="toggleAddBookForm()">Add Book</button>
       <!-- Beginning of Form -->
@@ -26,8 +31,8 @@
           <button type="button" onclick="submitBookForm()" class="btn btn-success">Submit</button>
           <button type="button" onclick="cancelBookForm()" class="btn btn-warning">Cancel</button>
         </form>
-        <!-- End of Form -->
       </div>
+      <!-- End of Form -->
     </div>
 
     
@@ -74,12 +79,12 @@
 
     <script>
       $(document).ready(function() {
-        const data = { name: "Code Louisvillains" }
-        const greetingTemplate = 'Hello {{name}}! I am a template!';
-        const greetingCompiled = Handlebars.compile(greetingTemplate);
-        const greetingRendered = greetingCompiled(data);
+        // const data = { name: "Code Louisvillains" }
+        // const greetingTemplate = 'Hello {{name}}! I am a template!';
+        // const greetingCompiled = Handlebars.compile(greetingTemplate);
+        // const greetingRendered = greetingCompiled(data);
     
-        $('body h1').first().after(greetingRendered);
+        // $('body h1').first().after(greetingRendered);
 
         refreshBookList();
       });
@@ -87,3 +92,5 @@
 
   </body>
 </html>
+
+<!-- Photo by Janko Ferlič on Unsplash -->
