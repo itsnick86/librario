@@ -2,12 +2,12 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 
-const BOOKS = [
-  {id: 'a', title: 'cutecat1.jpg', author: 'A cute cat'},
-  {id: 'b', title: 'uglycat1.jpg', author: 'Just kidding, all cats are cute'},
-  {id: 'c', title: 'total_recall_poster.jpg', author: 'Quaid, start the reactor...'},
-  {id: 'd', title: 'louisville_coffee.txt', author: 'Coffee shop ratings'},
-];
+// const BOOKS = [
+//   {id: 'a', title: 'cutecat1.jpg', author: 'A cute cat'},
+//   {id: 'b', title: 'uglycat1.jpg', author: 'Just kidding, all cats are cute'},
+//   {id: 'c', title: 'total_recall_poster.jpg', author: 'Quaid, start the reactor...'},
+//   {id: 'd', title: 'louisville_coffee.txt', author: 'Coffee shop ratings'},
+// ];
 
 router.use('/doc', function(req, res, next) {
   res.end(`Documentation http://expressjs.com/`);
@@ -31,6 +31,7 @@ router.post('/book', function(req, res, next) {
   const bookData = {
     title: req.body.title,
     author: req.body.author,
+    series: req.body.series,
   };
 
   Book.create(bookData, function(err, newBook) {
@@ -59,6 +60,7 @@ router.put('/book/:bookId', function(req, res, next) {
   
     book.title = req.body.title;
     book.author = req.body.author;
+    book.series = req.body.series;
   
     book.save(function(err, savedBook) {
       if (err) {

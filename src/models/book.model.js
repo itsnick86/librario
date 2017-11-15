@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const BookSchema = new mongoose.Schema({
   title: String,
   author: String,
+  series: String,
   created_at: { type: Date, default: Date.now },
   deleted: {type: Boolean, default: false}
 });

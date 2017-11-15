@@ -47,6 +47,7 @@ function submitBookForm() {
   const bookData = {
     title: $('#book-title').val(),
     author: $('#book-author').val(),
+    series: $('#book-series').val(),
     _id: $('#book-id').val(),
   };
 
@@ -117,10 +118,12 @@ function setFormData(data) {
   const book = {
     title: data.title || '',
     author: data.author || '',
+    series: data.series || '',
     _id: data._id || '',
   };
 
   $('#book-title').val(book.title);
   $('#book-author').val(book.author);
+  $('#book-series').val(book.series);
   $('#book-id').val(book._id);
 }
