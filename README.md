@@ -2,7 +2,7 @@
 Librario
 --------------------
 
-Librario is a web application for those book lovers that have so many books they don't have any more room on their book shelves. This application helps you keep a list of all the books you own. So the next time your in the book store and you can't remember if you've already bought a book you can just pull up your Librario list!
+Librario is a web application for those book lovers who have so many books they don't have any more room on their shelves. This application helps you keep a list of all the books you own. So the next time your in the book store and you can't remember if you've already bought a book you can just pull up your Librario list! In a future version I would like to add a social aspect to the application and allow a user to share their collection with their friends.
 
 
 --------------------
@@ -26,4 +26,15 @@ HOW TO OPERATE THE SITE
 
 2. If a user would like to Edit a book, click the 'Edit' button next to that book, update the information in the form, and click 'Submit'.
 
-3. If a user would like to Delete a book, simply click the 'Remove' button. An alert prompt will appear to make sure the user wants to remove the book. Click 'Ok' and the book will be removed from the list. 
+3. If a user would like to Delete a book, simply click the 'Remove' button. An alert prompt will appear to make sure the user wants to remove the book. Click 'Ok' and the book will be removed from the list.
+
+
+-----------------------
+FUTURE FEATURES
+----------------------- 
+
+1. Allow a user to log in.
+
+2. Add a search field.
+
+3. Allow users to share their book collection with their friends.
