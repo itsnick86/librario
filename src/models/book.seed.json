@@ -1,5 +1,8 @@
 [
   {"title":"Head First JavaScript", "author": "Eric Freeman", "series": " " },
-  {"title":"You Don't Know JS: ES6 & Beyond", "author": "Kyle Simpson", "series": " " },
-  {"title":"Beginning Node.js", "author": "Basarat Ali Syed", "series": " " }
+  {"title":"You Don't Know JS: ES6 & Beyond", "author": "Kyle Simpson", "series": "You Don't Know JS" },
+  {"title":"You Don't Know JS: Up & Going", "author": "Kyle Simpson", "series": "You Don't Know JS" },
+  {"title":"Beginning Node.js", "author": "Basarat Ali Syed", "series": " " },
+  {"title":"The Lion, the Witch and the Wardrobe", "author": "C. S. Lewis", "series": "The Chronicles of Narnia" },
+  {"title":"The Magician's Nephew", "author": "C. S. Lewis", "series": "The Chronicles of Narnia" }
 ]

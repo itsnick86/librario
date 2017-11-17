@@ -2,13 +2,6 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 
-// const BOOKS = [
-//   {id: 'a', title: 'cutecat1.jpg', author: 'A cute cat'},
-//   {id: 'b', title: 'uglycat1.jpg', author: 'Just kidding, all cats are cute'},
-//   {id: 'c', title: 'total_recall_poster.jpg', author: 'Quaid, start the reactor...'},
-//   {id: 'd', title: 'louisville_coffee.txt', author: 'Coffee shop ratings'},
-// ];
-
 router.use('/doc', function(req, res, next) {
   res.end(`Documentation http://expressjs.com/`);
 });
@@ -99,7 +92,6 @@ router.delete('/book/:bookId', function(req, res, next) {
 // Read handler
 router.get('/book/:bookId', function(req, res, next) {
   const {bookId} = req.params;
-  // same as 'const bookId = req.params.bookId'
 
   const book = BOOKS.find(entry => entry.id === bookId);
   if (!book) {

@@ -30,7 +30,6 @@ function refreshBookList() {
 
 // Function to toggle the form
 function toggleAddBookForm() {
-  console.log("Baby steps...");
   setFormData({});
   toggleAddBookFormVisibility();
 }
@@ -41,9 +40,8 @@ function toggleAddBookFormVisibility() {
 }
 
 
+// Function to submit the form
 function submitBookForm() {
-  console.log("You clicked 'submit'. Congratulations.");
-
   const bookData = {
     title: $('#book-title').val(),
     author: $('#book-author').val(),
@@ -79,6 +77,7 @@ function submitBookForm() {
   console.log("Your book data", bookData);
 }
 
+// Cancel adding or editing
 function cancelBookForm() {
   toggleAddBookFormVisibility();
 }
@@ -92,9 +91,9 @@ function editBookClick(id) {
   }
 }
 
-
+// Deletes book when Remove button is selected
 function deleteBookClick(id) {
-  if (confirm("Are you sure?")) {
+  if (confirm("Are you sure you would like to remove this book from your collection?")) {
     $.ajax({
       type: 'DELETE',
       url: '/api/book/' + id,
@@ -102,11 +101,11 @@ function deleteBookClick(id) {
       contentType : 'application/json',
     })
       .done(function(response) {
-        console.log("Book", id, "is DOOMED!!!!!!");
+        console.log("Book", id, "has been removed");
         refreshBookList();
       })
       .fail(function(error) {
-        console.log("I'm not dead yet!", error);
+        console.log("Book was not removed!", error);
       })
   }
 }
