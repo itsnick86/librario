@@ -4,7 +4,7 @@ HEADING
 
 .main-header {
   padding-top: 250px;
-  height: 850px;
+  height: 100vh;
   background: url('../img/library.jpg') no-repeat center;
   background-size: cover;
 
